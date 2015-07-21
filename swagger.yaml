@@ -1,0 +1,1389 @@
+
+swagger: '2.0'
+info:
+  version: '4.0'
+  title: BCS API
+paths:
+  /alarm:
+    get:
+      responses:
+        '200':
+          description: Alarm Status
+          schema:
+            $ref: '#/definitions/Alarm'
+      description: ''
+      tags:
+        - alarm
+      operationId: getAlarm
+    post:
+      responses:
+        '200':
+          description: Alarm Status
+          schema:
+            $ref: '#/definitions/Alarm'
+      description: ''
+      tags:
+        - alarm
+      summary: Turns off the alarm.  Cannot be used to turn the alarm on.
+      operationId: postAlarm
+      parameters:
+        - in: body
+          description: Alarm object
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Alarm'
+  /flash:
+    post:
+      responses:
+        '202':
+          description: Firmware update initiated
+        '400':
+          description: Raised if the IP address is invalid
+        '405':
+          description: Raised if a GET is issued
+      description: ''
+      tags:
+        - flash
+      summary: Attempt to update firmware using specified IP address as TFTP server.
+      operationId: postFirmware
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          description: TFTP Server
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Firmware'
+  /device:
+    get:
+      responses:
+        '200':
+          description: Device status
+          schema:
+            $ref: '#/definitions/Device'
+      description: ''
+      tags:
+        - device
+      summary: Get information about the device
+      operationId: getDevice
+      produces: &ref_0
+        - application/json
+      consumes: &ref_1
+        - application/json
+    post:
+      responses:
+        '200':
+          description: Updated device status
+          schema:
+            $ref: '#/definitions/Device'
+      description: ''
+      tags:
+        - device
+      summary: Update device configuration
+      operationId: postDevice
+      produces: *ref_0
+      consumes: *ref_1
+      parameters:
+        - in: body
+          description: Device object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Device'
+  /din:
+    get:
+      responses:
+        '200':
+          description: DIN status summary (on/off)
+          schema:
+            type: array
+            items:
+              type: integer
+      description: ''
+      tags:
+        - din
+      summary: List of current input status
+      operationId: getDins
+      produces: &ref_2
+        - application/json
+      consumes: &ref_3
+        - application/json
+  '/din/{id}':
+    get:
+      responses:
+        '200':
+          description: DIN Status
+          schema:
+            $ref: '#/definitions/Din'
+        '404':
+          description: Raised if the din number does not exist
+      description: ''
+      tags:
+        - din
+      summary: Get information about an Input
+      operationId: getDinById
+      produces: *ref_2
+      consumes: *ref_3
+      parameters:
+        - in: path
+          description: The Din number
+          name: id
+          required: true
+          type: integer
+    post:
+      responses:
+        '200':
+          description: Updated DIN Status
+          schema:
+            $ref: '#/definitions/Din'
+        '404':
+          description: Raised if the din number does not exist
+      description: ''
+      tags:
+        - din
+      summary: Update Digital Input settings
+      operationId: postDinById
+      produces: *ref_2
+      consumes: *ref_3
+      parameters:
+        - in: path
+          description: The Din number
+          name: id
+          required: true
+          type: integer
+        - in: body
+          description: Din object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Din'
+  /temp:
+    get:
+      responses:
+        '200':
+          description: All temp probe values
+          schema:
+            type: array
+            items:
+              type: integer
+      description: ''
+      tags:
+        - temp
+      summary: List of current temperature values
+      operationId: getTemps
+      produces: &ref_4
+        - application/json
+      consumes: &ref_5
+        - application/json
+  '/temp/{probe}':
+    get:
+      responses:
+        '200':
+          description: Temp probe status
+          schema:
+            $ref: '#/definitions/Probe'
+        '404':
+          description: Raised if the temp probe does not exist
+      description: ''
+      tags:
+        - temp
+      summary: Get information about a temperature probe
+      operationId: getTempById
+      produces: *ref_4
+      consumes: *ref_5
+      parameters:
+        - in: path
+          description: The probe number
+          name: probe
+          required: true
+          type: integer
+    post:
+      responses:
+        '200':
+          description: Updated temp probe status
+          schema:
+            $ref: '#/definitions/Probe'
+        '404':
+          description: Raised if the temp probe does not exist
+      description: ''
+      tags:
+        - temp
+      summary: Update temperature probe settings
+      operationId: postTempById
+      produces: *ref_4
+      consumes: *ref_5
+      parameters:
+        - in: path
+          description: The probe number
+          name: probe
+          required: true
+          type: integer
+        - in: body
+          description: Probe object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Probe'
+  /output:
+    get:
+      responses:
+        '200':
+          description: Outputs summary (on/off)
+          schema:
+            type: array
+            items:
+              type: integer
+      description: ''
+      tags:
+        - output
+      summary: List of current output values
+      operationId: getoutputs
+      produces: &ref_6
+        - application/json
+      consumes: &ref_7
+        - application/json
+  '/output/{id}':
+    get:
+      responses:
+        '200':
+          description: Output Status
+          schema:
+            $ref: '#/definitions/Output'
+        '404':
+          description: Raised if the output number does not exist
+      description: ''
+      tags:
+        - output
+      summary: Get information about a Digital Output
+      operationId: getoutputById
+      produces: *ref_6
+      consumes: *ref_7
+      parameters:
+        - in: path
+          description: The output number
+          name: id
+          required: true
+          type: integer
+    post:
+      responses:
+        '200':
+          description: Updated output status
+          schema:
+            $ref: '#/definitions/Output'
+        '404':
+          description: Raised if the output number does not exist
+      description: ''
+      tags:
+        - output
+      summary: Update Digital Output settings
+      operationId: postoutputById
+      produces: *ref_6
+      consumes: *ref_7
+      parameters:
+        - in: path
+          description: The output number
+          name: id
+          required: true
+          type: integer
+        - in: body
+          description: output object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Output'
+  /process:
+    get:
+      responses:
+        '200':
+          description: Processes summary (on/off)
+          schema:
+            type: array
+            items:
+              type: integer
+      description: ''
+      tags:
+        - process
+      summary: 'List of current processes, 0 = not running, 1 = running'
+      operationId: getprocesses
+      produces: &ref_8
+        - application/json
+      consumes: &ref_9
+        - application/json
+  '/process/{id}':
+    get:
+      responses:
+        '200':
+          description: Process status
+          schema:
+            $ref: '#/definitions/Process'
+        '404':
+          description: Raised if the process number does not exist
+      description: ''
+      tags:
+        - process
+      summary: Get information about a process
+      operationId: getprocessById
+      produces: *ref_8
+      consumes: *ref_9
+      parameters:
+        - in: path
+          description: The process number
+          name: id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+    post:
+      responses:
+        '200':
+          description: Updated process status
+          schema:
+            $ref: '#/definitions/Process'
+        '404':
+          description: Raised if the process number does not exist
+      description: ''
+      tags:
+        - process
+      summary: Update process settings
+      operationId: postprocessById
+      produces: *ref_8
+      consumes: *ref_9
+      parameters:
+        - in: path
+          description: The process number
+          name: id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: body
+          description: Process object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/ProcessInput'
+  '/process/{process_id}/state/{state_id}':
+    get:
+      responses:
+        '200':
+          description: State status
+          schema:
+            $ref: '#/definitions/State'
+        '404':
+          description: Raised if the state or process number does not exist
+      description: ''
+      tags:
+        - state
+      summary: Get information about a state
+      operationId: getstateById
+      produces: &ref_10
+        - application/json
+      consumes: &ref_11
+        - application/json
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: path
+          description: The state number
+          name: state_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+    post:
+      responses:
+        '200':
+          description: Updated state status
+          schema:
+            $ref: '#/definitions/State'
+        '404':
+          description: Raised if the state or process number does not exist
+      description: ''
+      tags:
+        - state
+      summary: Update state settings
+      operationId: poststateById
+      produces: *ref_10
+      consumes: *ref_11
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: path
+          description: The state number
+          name: state_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: body
+          description: State object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/State'
+  '/process/{process_id}/state/{state_id}/exit_conditions':
+    get:
+      responses:
+        '200':
+          description: Exit conditions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ExitCondition'
+        '404':
+          description: Raised if the state or process number does not exist
+      description: ''
+      tags:
+        - state
+      summary: "Get information about a state's exit conditions"
+      operationId: getstateECById
+      produces: *ref_10
+      consumes: *ref_11
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: path
+          description: The state number
+          name: state_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+    post:
+      responses:
+        '200':
+          description: Updated exit conditions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ExitCondition'
+        '404':
+          description: Raised if the state or process number does not exist
+      description: ''
+      tags:
+        - state
+      summary: Update state exit conditions
+      operationId: poststateECById
+      produces: *ref_10
+      consumes: *ref_11
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: path
+          description: The state number
+          name: state_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: body
+          description: ExitCondition array to update
+          name: body
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ExitCondition'
+  '/process/{process_id}/state/{state_id}/output_controllers':
+    get:
+      responses:
+        '200':
+          description: Output controllers
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OutputController'
+        '404':
+          description: Raised if the state or process number does not exist
+      description: ''
+      tags:
+        - state
+      summary: "Get information about a state's output controllers"
+      operationId: getstateOCById
+      produces: *ref_10
+      consumes: *ref_11
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: path
+          description: The state number
+          name: state_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+    post:
+      responses:
+        '200':
+          description: Updated output controllers
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OutputController'
+        '404':
+          description: Raised if the state or process number does not exist
+      description: ''
+      tags:
+        - state
+      summary: Update state output controllers
+      operationId: poststateOCById
+      produces: *ref_10
+      consumes: *ref_11
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: path
+          description: The state number
+          name: state_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: body
+          description: OutputController array to update
+          name: body
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OutputController'
+  '/process/{process_id}/state/{state_id}/boolean_outputs':
+    get:
+      responses:
+        '200':
+          description: Boolean outputs
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BooleanOutput'
+        '404':
+          description: Raised if the state or process number does not exist
+      description: ''
+      tags:
+        - state
+      summary: "Get information about a state's direct/boolean outputs (BCS-462 ONLY!)"
+      operationId: getstateBOById
+      produces: *ref_10
+      consumes: *ref_11
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: path
+          description: The state number
+          name: state_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+    post:
+      responses:
+        '200':
+          description: Updated boolean outputs
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BooleanOutput'
+        '404':
+          description: Raised if the state or process number does not exist
+      description: ''
+      tags:
+        - state
+      summary: 'Update state direct/boolean outputs (BCS-462 ONLY!)'
+      operationId: poststateBObyId
+      produces: *ref_10
+      consumes: *ref_11
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: path
+          description: The state number
+          name: state_id
+          required: true
+          type: integer
+          minimum: 0 
+          maximum: 7
+        - in: body
+          description: BooleanOutputs array to update
+          name: body
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BooleanOutput'
+  /network:
+    get:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/Network'
+      description: ''
+      tags:
+        - network
+      summary: Get the current network settings
+      operationId: getNetwork
+      produces: &ref_12
+        - application/json
+      consumes: &ref_13
+        - application/json
+    post:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/Network'
+        '400':
+          description: Raised if validation fails on any of the settings
+      description: ''
+      tags:
+        - network
+      summary: Change TCP/IP settings
+      operationId: postTCPIP
+      produces: *ref_12
+      consumes: *ref_13
+      parameters:
+        - in: body
+          description: Network object
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Network'
+  '/process/{process_id}/timer':
+    get:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            type: array
+            items:
+              type: integer
+      description: ''
+      tags:
+        - timer
+      summary: List of current timer values
+      operationId: getprocesstimers
+      produces: &ref_14
+        - application/json
+      consumes: &ref_15
+        - application/json
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+  '/process/{process_id}/timer/{timer_id}':
+    get:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/Timer'
+        '404':
+          description: Raised if the timer or process number do not exist
+      description: ''
+      tags:
+        - timer
+      summary: Get information about a timer
+      operationId: gettimerById
+      produces: *ref_14
+      consumes: *ref_15
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+        - in: path
+          description: The timer number
+          name: timer_id
+          required: true
+          type: integer
+    post:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/Timer'
+        '404':
+          description: Raised if the timer or process number do not exist
+      description: ''
+      tags:
+        - timer
+      summary: Update timer settings
+      operationId: posttimerById
+      produces: *ref_14
+      consumes: *ref_15
+      parameters:
+        - in: path
+          description: The process number
+          name: process_id
+          required: true
+          type: integer
+        - in: path
+          description: The timer number
+          name: timer_id
+          required: true
+          type: integer
+        - in: body
+          description: Timer object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Timer'
+  '/pid/{id}':
+    get:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/PID'
+      description: ''
+      tags:
+        - pid
+      summary: Get global PID settings for the BCS
+      operationId: getPID
+      produces: &ref_16
+        - application/json
+      consumes: &ref_17
+        - application/json
+      parameters:
+        - in: path
+          description: The PID number (0-7)
+          name: id
+          required: true
+          type: integer
+    post:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/PID'
+        '400':
+          description: Raised if invalid parameter values are specified.
+      description: ''
+      tags:
+        - pid
+      summary: Update global PID settings
+      operationId: postPID
+      produces: *ref_16
+      consumes: *ref_17
+      parameters:
+        - in: path
+          description: The PID number (0-7)
+          name: id
+          required: true
+          type: integer
+        - in: body
+          description: PID object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/PID'
+  '/igniter/{id}':
+    get:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/Igniter'
+      description: ''
+      tags:
+        - igniter
+      summary: Get igniter settings for the BCS
+      operationId: getIgniter
+      produces: &ref_18
+        - application/json
+      consumes: &ref_19
+        - application/json
+      parameters:
+        - in: path
+          description: The igniter number (0-2)
+          name: id
+          required: true
+          type: integer
+    post:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/Igniter'
+        '400':
+          description: Raised if invalid parameter values are specified.
+      description: ''
+      tags:
+        - igniter
+      summary: Update igniter settings
+      operationId: postIgniter
+      produces: *ref_18
+      consumes: *ref_19
+      parameters:
+        - in: path
+          description: The igniter number (0-2)
+          name: id
+          required: true
+          type: integer
+        - in: body
+          description: Igniter object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Igniter'
+  '/ladder/{rung}':
+    get:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/Ladder'
+      description: ''
+      tags:
+        - ladder
+      summary: Get ladder settings for the BCS
+      operationId: getLadder
+      produces: &ref_20
+        - application/json
+      consumes: &ref_21
+        - application/json
+      parameters:
+        - in: path
+          description: The ladder rung number (0-39)
+          name: rung
+          required: true
+          type: integer
+    post:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/Ladder'
+        '400':
+          description: Raised if invalid parameter values are specified.
+      description: ''
+      tags:
+        - ladder
+      summary: Update ladder settings
+      operationId: postLadder
+      produces: *ref_20
+      consumes: *ref_21
+      parameters:
+        - in: path
+          description: The ladder rung number (0-39)
+          name: rung
+          required: true
+          type: integer
+          minimum: 0
+          maximum: 39
+        - in: body
+          description: Ladder/Rung object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Ladder'
+  /system:
+    get:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/System'
+      description: ''
+      tags:
+        - system
+      summary: Get global settings for the BCS
+      operationId: getSystem
+      produces: &ref_22
+        - application/json
+      consumes: &ref_23
+        - application/json
+    post:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/System'
+        '400':
+          description: Raised if display_type is not a valid choice.
+      description: ''
+      tags:
+        - system
+      summary: Update global system settings
+      operationId: postSystem
+      produces: *ref_22
+      consumes: *ref_23
+      parameters:
+        - in: body
+          description: System object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/System'
+  /reset:
+    post:
+      responses:
+        '200':
+          description: No response was specified
+          schema:
+            $ref: '#/definitions/Reset'
+      description: ''
+      tags:
+        - reset
+      summary: Reset the device
+      operationId: postReset
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          description: Reset object
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Reset'
+  /estop:
+    post:
+      responses:
+        '200':
+          description: No response was specified
+        '400':
+          description: estop must be true
+      description: ''
+      tags:
+        - estop
+      summary: Stop all processes and shut down all outputs
+      operationId: postEStop
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          description: estop
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/EStop'
+tags:
+  - name: alarm
+    description: Alarm
+  - name: flash
+    description: Flash new firmware
+  - name: temp
+    description: Temperature Probes
+  - name: din
+    description: Digital Inputs
+  - name: output
+    description: Outputs
+  - name: process
+    description: Processes
+  - name: state
+    description: Process States
+  - name: network
+    description: Network Settings
+  - name: timer
+    description: Process Timers
+  - name: pid
+    description: Global PID Settings
+  - name: igniter
+    description: Igniter settings
+  - name: ladder
+    description: Ladder settings
+  - name: device
+    description: Device Information
+  - name: system
+    description: System Settings
+  - name: reset
+    description: Reset BCS Device
+  - name: estop
+    description: Emergency Stop
+host: bcs
+basePath: /api
+schemes:
+  - http
+definitions:
+  Alarm:
+    properties:
+      'on':
+        type: boolean
+        enum:
+          - 'false'
+      type:
+        type: integer
+        description: '[READ-ONLY] *Only if alarm is on* Alarm type [1 = loop, 2 = short]'
+      process:
+        type: integer
+        description: '[READ-ONLY] *Only if alarm is on* Process which triggered alarm'
+      state:
+        type: integer
+        description: '[READ-ONLY] *Only if alarm is on* State which triggered alarm'
+  Firmware:
+    properties:
+      server:
+        type: string
+        description: IP Address of TFTP server
+  Device:
+    properties:
+      type:
+        type: string
+        description: '[READ-ONLY]'
+      version:
+        type: string
+        description: '[READ-ONLY]'
+      build:
+        type: string
+        description: '[READ-ONLY]'
+      name:
+        type: string
+  Din:
+    properties:
+      name:
+        type: string
+      'on':
+        type: boolean
+        description: '[READ-ONLY] Current value of Din'
+      enabled:
+        type: boolean
+      oneshot:
+        type: boolean
+  Probe:
+    properties:
+      name:
+        type: string
+      temp:
+        type: integer
+        description: '[READ-ONLY] Current temperature reading'
+      setpoint:
+        type: integer
+        description: '[READ-ONLY] Current setpoint'
+      resistance:
+        type: integer
+        description: '[READ-ONLY] Current resistance reading'
+      enabled:
+        type: boolean
+      coefficients:
+        type: array
+        items:
+          type: number
+          format: double
+        description: 'Array of Steinhart Coefficients [a,b,c]'
+  Output:
+    properties:
+      name:
+        type: string
+      'on':
+        type: boolean
+        description: Current value of output
+      enabled:
+        type: boolean
+  Process:
+    properties:
+      name:
+        type: string
+      running:
+        type: boolean
+      paused:
+        type: boolean
+      run_on_startup:
+        type: boolean
+      current_state:
+        $ref: '#/definitions/State'
+      states:
+        type: array
+        items:
+          type: string
+  ProcessInput:
+    properties:
+      name:
+        type: string
+      running:
+        type: boolean
+      paused:
+        type: boolean
+      run_on_startup:
+        type: boolean
+      current_state:
+        type: integer
+  State:
+    properties:
+      name:
+        type: string
+      timers:
+        type: array
+        items:
+          $ref: '#/definitions/Timer'
+      ramp:
+        $ref: '#/definitions/Ramp'
+      process_spawn:
+        type: array
+        items:
+          type: integer
+      process_kill:
+        type: array
+        items:
+          type: integer
+      registers:
+        type: array
+        items:
+          type: integer
+      state_alarm:
+        type: integer
+      email_alarm:
+        type: boolean
+  ExitCondition:
+    properties:
+      enabled:
+        type: boolean
+      source_type:
+        type: integer
+      source_number:
+        type: integer
+      next_state:
+        type: integer
+      condition:
+        type: integer
+      value:
+        type: integer
+  OutputController:
+    properties:
+      mode:
+        type: integer
+        enum: 
+          - 0-unused
+          - 1-direct
+          - 2-duty cycle
+          - 3-differential
+          - 4-PID
+      heat:
+        type: boolean
+      input:
+        type: integer
+        minimum: 0
+        maximum: 7
+      swing:
+        type: integer
+      setpoint:
+        type: integer
+  BooleanOutput:
+    properties:
+      enabled:
+        type: boolean
+      value:
+        type: boolean
+  Timer:
+    properties:
+      name:
+        type: string
+      value:
+        type: integer
+        description: '[READ-ONLY]'
+      'on':
+        type: boolean
+        description: '[READ-ONLY]'
+      enabled:
+        type: boolean
+        description: '[READ-ONLY]'
+      count_up:
+        type: boolean
+        description: '[READ-ONLY]'
+  Ramp:
+    properties:
+      enable:
+        type: boolean
+      output:
+        type: integer
+      start:
+        type: integer
+      end:
+        type: integer
+      time:
+        type: integer
+  Network:
+    properties:
+      dhcp:
+        type: boolean
+      ip:
+        type: array
+        items:
+          type: integer
+        description: '[READ-ONLY] current IP address in format [192,168,0,63]'
+      mac:
+        type: array
+        items:
+          type: integer
+        description: '[READ-ONLY]'
+      netmask:
+        type: array
+        items:
+          type: integer
+      gateway:
+        type: array
+        items:
+          type: integer
+      static_ip:
+        type: array
+        items:
+          type: integer
+      port:
+        type: integer
+  PID:
+    properties:
+      proportional_gain:
+        type: number
+        format: float
+      integral_gain:
+        type: number
+        format: float
+      derivative_gain:
+        type: number
+        format: float
+      integral_min:
+        type: number
+        format: float
+      integral_max:
+        type: number
+        format: float
+      output_period:
+        type: integer
+      sample_period:
+        type: integer
+      pulse_width_min:
+        type: integer
+        minimum: 0
+        maximum: 100
+      pulse_width_max:
+        type: integer
+        minimum: 0
+        maximum: 100
+  Igniter:
+    properties:
+      outputs:
+        type: array
+        items:
+          type: integer
+      igniter:
+        type: integer
+        minimum: 0
+        maximum: 17
+      reg:
+        type: integer
+        minimum: 0
+        maximum: 15
+      holdoff:
+        type: integer
+      time:
+        type: integer
+  Ladder:
+    properties:
+      slots:
+        type: array
+        items:
+          $ref: '#/definitions/Slots'
+  Slots:
+    properties:
+      wire:
+        type: integer
+      type:
+        type: integer
+      number:
+        type: integer
+      nc:
+        type: boolean
+      status:
+        $ref: '#/definitions/Status'
+  Status:
+    properties:
+      wire:
+        type: boolean
+        description: '[READ-ONLY]'
+      contact:
+        type: boolean
+        description: '[READ-ONLY]'
+  System:
+    properties:
+      celcius:
+        type: boolean
+      alarm_to_reg10:
+        type: boolean
+      enable_cors:
+        type: boolean
+      require_auth:
+        type: boolean
+      admin_token:
+        type: string
+        description: '[WRITE-ONLY]'
+      read_only_token:
+        type: string
+        description: '[WRITE-ONLY]'
+      advanced_js:
+        type: string
+      background_url:
+        type: string
+      email_address:
+        type: string
+      led_display:
+        type: array
+        items:
+          $ref: '#/definitions/LEDDisplay'
+  LEDDisplay:
+    properties:
+      address:
+        type: integer
+        description: Address of I2C Display
+      probe:
+        type: integer
+        description: Temperature probe / 255 to disable LED Display
+  Reset:
+    properties:
+      reset:
+        type: boolean
+  EStop:
+    properties:
+      estop:
+        type: boolean
+
+
