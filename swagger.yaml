@@ -128,8 +128,10 @@ paths:
         - din
       summary: Get information about an Input
       operationId: getDinById
-      produces: *ref_2
-      consumes: *ref_3
+      produces: &ref_2
+        - application/json
+      consumes: &ref_3
+        - application/json
       parameters:
         - in: path
           description: The Din number
@@ -149,8 +151,10 @@ paths:
         - din
       summary: Update Digital Input settings
       operationId: postDinById
-      produces: *ref_2
-      consumes: *ref_3
+      produces: &ref_2
+        - application/json
+      consumes: &ref_3
+        - application/json
       parameters:
         - in: path
           description: The Din number
@@ -195,8 +199,10 @@ paths:
         - temp
       summary: Get information about a temperature probe
       operationId: getTempById
-      produces: *ref_4
-      consumes: *ref_5
+      produces: &ref_4
+        - application/json
+      consumes: &ref_5
+        - application/json
       parameters:
         - in: path
           description: The probe number
@@ -216,8 +222,10 @@ paths:
         - temp
       summary: Update temperature probe settings
       operationId: postTempById
-      produces: *ref_4
-      consumes: *ref_5
+      produces: &ref_4
+        - application/json
+      consumes: &ref_5
+        - application/json
       parameters:
         - in: path
           description: The probe number
@@ -262,8 +270,10 @@ paths:
         - output
       summary: Get information about a Digital Output
       operationId: getoutputById
-      produces: *ref_6
-      consumes: *ref_7
+      produces: &ref_6
+        - application/json
+      consumes: &ref_7
+        - application/json
       parameters:
         - in: path
           description: The output number
@@ -283,8 +293,10 @@ paths:
         - output
       summary: Update Digital Output settings
       operationId: postoutputById
-      produces: *ref_6
-      consumes: *ref_7
+      produces: &ref_6
+        - application/json
+      consumes: &ref_7
+        - application/json
       parameters:
         - in: path
           description: The output number
@@ -329,8 +341,10 @@ paths:
         - process
       summary: Get information about a process
       operationId: getprocessById
-      produces: *ref_8
-      consumes: *ref_9
+      produces: &ref_8
+        - application/json
+      consumes: &ref_9
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -352,8 +366,10 @@ paths:
         - process
       summary: Update process settings
       operationId: postprocessById
-      produces: *ref_8
-      consumes: *ref_9
+      produces: &ref_8
+        - application/json
+      consumes: &ref_9
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -414,8 +430,10 @@ paths:
         - state
       summary: Update state settings
       operationId: poststateById
-      produces: *ref_10
-      consumes: *ref_11
+      produces: &ref_10
+        - application/json
+      consumes: &ref_11
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -453,8 +471,10 @@ paths:
         - state
       summary: "Get information about a state's exit conditions"
       operationId: getstateECById
-      produces: *ref_10
-      consumes: *ref_11
+      produces: &ref_10
+        - application/json
+      consumes: &ref_11
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -485,8 +505,10 @@ paths:
         - state
       summary: Update state exit conditions
       operationId: poststateECById
-      produces: *ref_10
-      consumes: *ref_11
+      produces: &ref_10
+        - application/json
+      consumes: &ref_11
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -526,8 +548,10 @@ paths:
         - state
       summary: "Get information about a state's output controllers"
       operationId: getstateOCById
-      produces: *ref_10
-      consumes: *ref_11
+      produces: &ref_10
+        - application/json
+      consumes: &ref_11
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -558,8 +582,10 @@ paths:
         - state
       summary: Update state output controllers
       operationId: poststateOCById
-      produces: *ref_10
-      consumes: *ref_11
+      produces: &ref_10
+        - application/json
+      consumes: &ref_11
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -599,8 +625,10 @@ paths:
         - state
       summary: "Get information about a state's direct/boolean outputs (BCS-462 ONLY!)"
       operationId: getstateBOById
-      produces: *ref_10
-      consumes: *ref_11
+      produces: &ref_10
+        - application/json
+      consumes: &ref_11
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -631,8 +659,10 @@ paths:
         - state
       summary: 'Update state direct/boolean outputs (BCS-462 ONLY!)'
       operationId: poststateBObyId
-      produces: *ref_10
-      consumes: *ref_11
+      produces: &ref_10
+        - application/json
+      consumes: &ref_11
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -732,8 +762,10 @@ paths:
         - timer
       summary: Get information about a timer
       operationId: gettimerById
-      produces: *ref_14
-      consumes: *ref_15
+      produces: &ref_14
+        - application/json
+      consumes: &ref_15
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -758,8 +790,10 @@ paths:
         - timer
       summary: Update timer settings
       operationId: posttimerById
-      produces: *ref_14
-      consumes: *ref_15
+      produces: &ref_14
+        - application/json
+      consumes: &ref_15
+        - application/json
       parameters:
         - in: path
           description: The process number
@@ -812,8 +846,10 @@ paths:
         - pid
       summary: Update global PID settings
       operationId: postPID
-      produces: *ref_16
-      consumes: *ref_17
+      produces: &ref_16
+        - application/json
+      consumes: &ref_17
+        - application/json
       parameters:
         - in: path
           description: The PID number (0-7)
@@ -861,8 +897,10 @@ paths:
         - igniter
       summary: Update igniter settings
       operationId: postIgniter
-      produces: *ref_18
-      consumes: *ref_19
+      produces: &ref_18
+        - application/json
+      consumes: &ref_19
+        - application/json
       parameters:
         - in: path
           description: The igniter number (0-2)
@@ -910,8 +948,10 @@ paths:
         - ladder
       summary: Update ladder settings
       operationId: postLadder
-      produces: *ref_20
-      consumes: *ref_21
+      produces: &ref_20
+        - application/json
+      consumes: &ref_21
+        - application/json
       parameters:
         - in: path
           description: The ladder rung number (0-39)
@@ -955,8 +995,10 @@ paths:
         - system
       summary: Update global system settings
       operationId: postSystem
-      produces: *ref_22
-      consumes: *ref_23
+      produces: &ref_22
+        - application/json
+      consumes: &ref_23
+        - application/json
       parameters:
         - in: body
           description: System object to update
