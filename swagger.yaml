@@ -715,8 +715,10 @@ paths:
         - network
       summary: Change TCP/IP settings
       operationId: postTCPIP
-      produces: *ref_12
-      consumes: *ref_13
+      produces: &ref_12
+        - application/json
+      consumes: &ref_13
+        - application/json
       parameters:
         - in: body
           description: Network object
