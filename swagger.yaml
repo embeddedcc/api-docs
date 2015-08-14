@@ -501,7 +501,7 @@ paths:
           minimum: 0 
           maximum: 7
         - in: body
-          description: ExitCondition array to update
+          description: ExitCondition  to update
           name: body
           required: true
           schema:
@@ -574,7 +574,7 @@ paths:
           minimum: 0 
           maximum: 7
         - in: body
-          description: OutputController array to update
+          description: OutputController  to update
           name: body
           required: true
           schema:
@@ -1193,11 +1193,11 @@ definitions:
       mode:
         type: integer
         enum: 
-          - 0-unused
-          - 1-direct
-          - 2-duty cycle
-          - 3-differential
-          - 4-PID
+          - 0 - unused
+          - 1 - direct
+          - 2 - duty cycle
+          - 3 - differential
+          - 4 -PID
       heat:
         type: boolean
       input:
