@@ -85,8 +85,10 @@ paths:
         - device
       summary: Update device configuration
       operationId: postDevice
-      produces: *ref_0
-      consumes: *ref_1
+      produces: &ref_0
+        - application/json
+      consumes: &ref_1
+        - application/json
       parameters:
         - in: body
           description: Device object to update
