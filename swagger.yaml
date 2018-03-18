@@ -1,7 +1,6 @@
-
 swagger: '2.0'
 info:
-  version: '4.0'
+  version: '4.1'
   title: BCS API
 paths:
   /alarm:
@@ -70,9 +69,9 @@ paths:
         - device
       summary: Get information about the device
       operationId: getDevice
-      produces: &ref_0
+      produces:
         - application/json
-      consumes: &ref_1
+      consumes:
         - application/json
     post:
       responses:
@@ -85,9 +84,9 @@ paths:
         - device
       summary: Update device configuration
       operationId: postDevice
-      produces: &ref_0
+      produces:
         - application/json
-      consumes: &ref_1
+      consumes:
         - application/json
       parameters:
         - in: body
@@ -110,9 +109,9 @@ paths:
         - din
       summary: List of current input status
       operationId: getDins
-      produces: &ref_2
+      produces:
         - application/json
-      consumes: &ref_3
+      consumes:
         - application/json
   '/din/{id}':
     get:
@@ -128,9 +127,9 @@ paths:
         - din
       summary: Get information about an Input
       operationId: getDinById
-      produces: &ref_2
+      produces:
         - application/json
-      consumes: &ref_3
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -151,9 +150,9 @@ paths:
         - din
       summary: Update Digital Input settings
       operationId: postDinById
-      produces: &ref_2
+      produces:
         - application/json
-      consumes: &ref_3
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -181,9 +180,9 @@ paths:
         - temp
       summary: List of current temperature values
       operationId: getTemps
-      produces: &ref_4
+      produces:
         - application/json
-      consumes: &ref_5
+      consumes:
         - application/json
   '/temp/{probe}':
     get:
@@ -199,9 +198,9 @@ paths:
         - temp
       summary: Get information about a temperature probe
       operationId: getTempById
-      produces: &ref_4
+      produces:
         - application/json
-      consumes: &ref_5
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -222,9 +221,9 @@ paths:
         - temp
       summary: Update temperature probe settings
       operationId: postTempById
-      produces: &ref_4
+      produces:
         - application/json
-      consumes: &ref_5
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -252,9 +251,9 @@ paths:
         - output
       summary: List of current output values
       operationId: getoutputs
-      produces: &ref_6
+      produces:
         - application/json
-      consumes: &ref_7
+      consumes:
         - application/json
   '/output/{id}':
     get:
@@ -270,9 +269,9 @@ paths:
         - output
       summary: Get information about a Digital Output
       operationId: getoutputById
-      produces: &ref_6
+      produces:
         - application/json
-      consumes: &ref_7
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -293,9 +292,9 @@ paths:
         - output
       summary: Update Digital Output settings
       operationId: postoutputById
-      produces: &ref_6
+      produces:
         - application/json
-      consumes: &ref_7
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -323,9 +322,9 @@ paths:
         - process
       summary: 'List of current processes, 0 = not running, 1 = running'
       operationId: getprocesses
-      produces: &ref_8
+      produces:
         - application/json
-      consumes: &ref_9
+      consumes:
         - application/json
   '/process/{id}':
     get:
@@ -341,9 +340,9 @@ paths:
         - process
       summary: Get information about a process
       operationId: getprocessById
-      produces: &ref_8
+      produces:
         - application/json
-      consumes: &ref_9
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -351,7 +350,7 @@ paths:
           name: id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
     post:
       responses:
@@ -366,9 +365,9 @@ paths:
         - process
       summary: Update process settings
       operationId: postprocessById
-      produces: &ref_8
+      produces:
         - application/json
-      consumes: &ref_9
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -376,7 +375,7 @@ paths:
           name: id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: body
           description: Process object to update
@@ -398,9 +397,9 @@ paths:
         - state
       summary: Get information about a state
       operationId: getstateById
-      produces: &ref_10
+      produces:
         - application/json
-      consumes: &ref_11
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -408,14 +407,14 @@ paths:
           name: process_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: path
           description: The state number
           name: state_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
     post:
       responses:
@@ -430,9 +429,9 @@ paths:
         - state
       summary: Update state settings
       operationId: poststateById
-      produces: &ref_10
+      produces:
         - application/json
-      consumes: &ref_11
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -440,14 +439,14 @@ paths:
           name: process_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: path
           description: The state number
           name: state_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: body
           description: State object to update
@@ -469,11 +468,11 @@ paths:
       description: ''
       tags:
         - state
-      summary: "Get information about a state's exit conditions"
+      summary: Get information about a state's exit conditions
       operationId: getstateECById
-      produces: &ref_10
+      produces:
         - application/json
-      consumes: &ref_11
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -481,14 +480,14 @@ paths:
           name: process_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: path
           description: The state number
           name: state_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
     post:
       responses:
@@ -505,9 +504,9 @@ paths:
         - state
       summary: Update state exit conditions
       operationId: poststateECById
-      produces: &ref_10
+      produces:
         - application/json
-      consumes: &ref_11
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -515,14 +514,14 @@ paths:
           name: process_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: path
           description: The state number
           name: state_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: body
           description: ExitCondition  to update
@@ -546,11 +545,11 @@ paths:
       description: ''
       tags:
         - state
-      summary: "Get information about a state's output controllers"
+      summary: Get information about a state's output controllers
       operationId: getstateOCById
-      produces: &ref_10
+      produces:
         - application/json
-      consumes: &ref_11
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -558,14 +557,14 @@ paths:
           name: process_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: path
           description: The state number
           name: state_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
     post:
       responses:
@@ -582,9 +581,9 @@ paths:
         - state
       summary: Update state output controllers
       operationId: poststateOCById
-      produces: &ref_10
+      produces:
         - application/json
-      consumes: &ref_11
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -592,14 +591,14 @@ paths:
           name: process_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: path
           description: The state number
           name: state_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: body
           description: OutputController  to update
@@ -623,11 +622,11 @@ paths:
       description: ''
       tags:
         - state
-      summary: "Get information about a state's direct/boolean outputs (BCS-462 ONLY!)"
+      summary: Get information about a state's direct/boolean outputs (BCS-462 ONLY!)
       operationId: getstateBOById
-      produces: &ref_10
+      produces:
         - application/json
-      consumes: &ref_11
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -635,14 +634,14 @@ paths:
           name: process_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: path
           description: The state number
           name: state_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
     post:
       responses:
@@ -657,11 +656,11 @@ paths:
       description: ''
       tags:
         - state
-      summary: 'Update state direct/boolean outputs (BCS-462 ONLY!)'
+      summary: Update state direct/boolean outputs (BCS-462 ONLY!)
       operationId: poststateBObyId
-      produces: &ref_10
+      produces:
         - application/json
-      consumes: &ref_11
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -669,14 +668,14 @@ paths:
           name: process_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: path
           description: The state number
           name: state_id
           required: true
           type: integer
-          minimum: 0 
+          minimum: 0
           maximum: 7
         - in: body
           description: BooleanOutputs array to update
@@ -698,9 +697,9 @@ paths:
         - network
       summary: Get the current network settings
       operationId: getNetwork
-      produces: &ref_12
+      produces:
         - application/json
-      consumes: &ref_13
+      consumes:
         - application/json
     post:
       responses:
@@ -715,9 +714,9 @@ paths:
         - network
       summary: Change TCP/IP settings
       operationId: postTCPIP
-      produces: &ref_12
+      produces:
         - application/json
-      consumes: &ref_13
+      consumes:
         - application/json
       parameters:
         - in: body
@@ -740,9 +739,9 @@ paths:
         - timer
       summary: List of current timer values
       operationId: getprocesstimers
-      produces: &ref_14
+      produces:
         - application/json
-      consumes: &ref_15
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -764,9 +763,9 @@ paths:
         - timer
       summary: Get information about a timer
       operationId: gettimerById
-      produces: &ref_14
+      produces:
         - application/json
-      consumes: &ref_15
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -792,9 +791,9 @@ paths:
         - timer
       summary: Update timer settings
       operationId: posttimerById
-      produces: &ref_14
+      produces:
         - application/json
-      consumes: &ref_15
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -825,9 +824,9 @@ paths:
         - pid
       summary: Get global PID settings for the BCS
       operationId: getPID
-      produces: &ref_16
+      produces:
         - application/json
-      consumes: &ref_17
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -848,9 +847,9 @@ paths:
         - pid
       summary: Update global PID settings
       operationId: postPID
-      produces: &ref_16
+      produces:
         - application/json
-      consumes: &ref_17
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -876,9 +875,9 @@ paths:
         - igniter
       summary: Get igniter settings for the BCS
       operationId: getIgniter
-      produces: &ref_18
+      produces:
         - application/json
-      consumes: &ref_19
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -899,9 +898,9 @@ paths:
         - igniter
       summary: Update igniter settings
       operationId: postIgniter
-      produces: &ref_18
+      produces:
         - application/json
-      consumes: &ref_19
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -927,9 +926,9 @@ paths:
         - ladder
       summary: Get ladder settings for the BCS
       operationId: getLadder
-      produces: &ref_20
+      produces:
         - application/json
-      consumes: &ref_21
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -950,9 +949,9 @@ paths:
         - ladder
       summary: Update ladder settings
       operationId: postLadder
-      produces: &ref_20
+      produces:
         - application/json
-      consumes: &ref_21
+      consumes:
         - application/json
       parameters:
         - in: path
@@ -980,9 +979,9 @@ paths:
         - system
       summary: Get global settings for the BCS
       operationId: getSystem
-      produces: &ref_22
+      produces:
         - application/json
-      consumes: &ref_23
+      consumes:
         - application/json
     post:
       responses:
@@ -997,9 +996,9 @@ paths:
         - system
       summary: Update global system settings
       operationId: postSystem
-      produces: &ref_22
+      produces:
         - application/json
-      consumes: &ref_23
+      consumes:
         - application/json
       parameters:
         - in: body
@@ -1008,6 +1007,77 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/System'
+  /reg:
+    get:
+      responses:
+        '200':
+          description: Register status summary (on/off)
+          schema:
+            type: array
+            items:
+              type: integer
+      description: ''
+      tags:
+        - reg
+      summary: List of current register status
+      operationId: getRegs
+      produces:
+        - application/json
+      consumes:
+        - application/json
+  '/reg/{id}':
+    get:
+      responses:
+        '200':
+          description: Register Status
+          schema:
+            $ref: '#/definitions/Reg'
+        '404':
+          description: Raised if the register number does not exist
+      description: ''
+      tags:
+        - reg
+      summary: Get information about an Register
+      operationId: getRegById
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          description: The Register number
+          name: id
+          required: true
+          type: integer
+    post:
+      responses:
+        '200':
+          description: Updated Register Status
+          schema:
+            $ref: '#/definitions/Reg'
+        '404':
+          description: Raised if the register number does not exist
+      description: ''
+      tags:
+        - reg
+      summary: Update Register status
+      operationId: postRegById
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          description: The Register number
+          name: id
+          required: true
+          type: integer
+        - in: body
+          description: Register object to update
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Reg'
   /reset:
     post:
       responses:
@@ -1238,7 +1308,7 @@ definitions:
     properties:
       mode:
         type: integer
-        enum: 
+        enum:
           - 0 - unused
           - 1 - direct
           - 2 - duty cycle
@@ -1431,5 +1501,8 @@ definitions:
     properties:
       estop:
         type: boolean
-
-
+  Reg:
+    properties:
+      'on':
+        type: boolean
+        description: 'Current value of Register'
