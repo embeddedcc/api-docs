@@ -1153,6 +1153,8 @@ tags:
     description: Device Information
   - name: system
     description: System Settings
+  - name: reg
+    description: Register status
   - name: reset
     description: Reset BCS Device
   - name: estop
